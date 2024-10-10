@@ -2,7 +2,7 @@
 // @name         Notatnik dla B2B Orno
 // @namespace    http://tampermonkey.net/
 // @author       Łukasz Kordos
-// @version      1.0
+// @version      1.1
 // @description  Pływający notatnik na b2b.orno.pl z zapisywaną pozycją, rozmiarem i zawartością
 // @match        https://b2b.orno.pl/*
 // @require      https://github.com/pa-jong/Userscripts/blob/2c8d30e6bb85dfd228f8187f0dbc554216dd11d6/ornob2bnotes.user.js
