@@ -5,9 +5,9 @@
 // @version      1.1
 // @description  Pływający notatnik na b2b.orno.pl z zapisywaną pozycją, rozmiarem i zawartością
 // @match        https://b2b.orno.pl/*
-// @require      https://github.com/pa-jong/Userscripts/blob/2c8d30e6bb85dfd228f8187f0dbc554216dd11d6/ornob2bnotes.user.js
-// @updateURL    https://github.com/pa-jong/Userscripts/blob/f30b14d9834f1cc6519c4f20bd35df2974a5cb55/update.json
-// @downloadURL  https://github.com/pa-jong/Userscripts/blob/2c8d30e6bb85dfd228f8187f0dbc554216dd11d6/ornob2bnotes.user.js // URL to the actual userscript
+// @require      https://pa-jong.github.io/OrnoB2BNotes/ornob2bnotes.user.js
+// @updateURL    https://pa-jong.github.io/OrnoB2BNotes/update.json
+// @downloadURL  https://pa-jong.github.io/OrnoB2BNotes/ornob2bnotes.user.js // URL to the actual userscript
 // @grant        none
 // ==/UserScript==
 
