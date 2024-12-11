@@ -1,0 +1,67 @@
+// ==UserScript==
+// @name         Rozszerzone Menu dla Apilo
+// @namespace    http://tampermonkey.net/
+// @author       Łukasz Kordos
+// @version      1.1
+// @description  Dodaje opcje "Gotowe do odbioru" i "Wysłano - wystawić dowód" do menu na stronie elektrone.apilo.com
+// @match        https://elektrone.apilo.com/*
+// @require      https://pa-jong.github.io/ApiloMenuExpander/ApiloMenuExpander.user.js
+// @updateURL    https://pa-jong.github.io/ApiloMenuExpander/update.json
+// @downloadURL  https://pa-jong.github.io/ApiloMenuExpander/ApiloMenuExpander.user.js
+// @grant        none
+// ==/UserScript==
+
+(function () {
+    'use strict';
+
+    // Funkcja dodająca nowe elementy do menu
+    function addMenuItems() {
+        // Znajdź menu główne (div z klasą "kt-menu__submenu")
+        const mainMenu = document.querySelector('.kt-menu__submenu > .kt-menu__subnav');
+
+        if (mainMenu) {
+            // Dodaj opcję "Gotowe do odbioru" jeśli nie została dodana
+            if (!document.querySelector('a[href="/order/order/all/#rt_orderStatus=46"]')) {
+                const readyForPickupItem = document.createElement('li');
+                readyForPickupItem.className = 'kt-menu__item kt-menu__item--submenu';
+                readyForPickupItem.innerHTML = `
+                    <a href="/order/order/all/#rt_orderStatus=46" class="kt-menu__link">
+                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                        <span class="kt-menu__link-text">
+                            Gotowe do odbioru
+                        </span>
+                    </a>
+                `;
+                const allOrdersItem = mainMenu.querySelector('a[href="/order/order/all/"]').parentElement;
+                allOrdersItem.insertAdjacentElement('beforebegin', readyForPickupItem);
+            }
+
+            // Dodaj opcję "Wysłano - wystawić dowód" jeśli nie została dodana
+            if (!document.querySelector('a[href="/order/order/all/#rt_orderStatus=34"]')) {
+                const sentItem = document.createElement('li');
+                sentItem.className = 'kt-menu__item kt-menu__item--submenu';
+                sentItem.innerHTML = `
+                    <a href="/order/order/all/#rt_orderStatus=34" class="kt-menu__link">
+                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
+                        <span class="kt-menu__link-text">
+                            Wysłano - wystawić dowód
+                        </span>
+                    </a>
+                `;
+                const allOrdersItem = mainMenu.querySelector('a[href="/order/order/all/"]').parentElement;
+                allOrdersItem.insertAdjacentElement('beforebegin', sentItem);
+            }
+        }
+    }
+
+    // Obserwator zmian w DOM (np. na wypadek dynamicznego ładowania menu)
+    const observer = new MutationObserver(() => {
+        addMenuItems(); // Wywołaj funkcję, gdy wykryto zmiany w DOM
+    });
+
+    // Rozpocznij obserwację menu głównego
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Na wypadek, gdyby elementy były już dostępne
+    addMenuItems();
+})();
